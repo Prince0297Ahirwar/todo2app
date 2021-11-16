@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%=title%></title>
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="right-col">
+        <h1 style="text-align: center;">TO DO APP</h1>
+    <div id ="main-body">
+        <form action="/addTask" method="POST">
+            <label for="task">Title Task</label>
+            <input type="text" id="myInput" placeholder="Title.." name="task_title">
+            <br>
+            <label for="description">Description</label>
+            <br>
+            <textarea name="task_description" id="description" placeholder="Description" cols="70" rows=10">
+            </textarea>
+            <br>
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="select">Select Category...</option>
+                <option value="personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="School">School</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="other">Other</option>
+            </select>
+            <p></p>
+            <label for="date">Due Date</label>
+            <input type="date" id="dueDate" required="required" name='date'>
+            <br>
+            <button class="btn" type="submit">Add Task</button>
+            <p class="empty"></p>
+        </form>
+        
+        <!-- presenting tast on screen -->
+        <div id="list-of-task">
+                <table border="2">
+                    <caption> TASKS </caption>
+                    <tr>
+                        <th>Title</th>
+                        <th>Task</th>
+                        <th>Category</th>
+                        <th>Due Date</th>
+                        <th>Delete</th>
+                    </tr>
+                    <%for(let i of tasks_list) {%>
+                    <tr>
+                        <td><%=i.title%></td>
+                        <td><%=i.description%></td>
+                        <td><%=i.category%></td>
+                        <td><%=i.dueDate%></td>
+                        <td>
+                            
+                            <a href="/deleteTask/<%=i.id%>">
+                                <i class="fas fa-minus-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <%}%>
+                </table>
+                
+        </div>
+        
+    </div>
+    </div>
+</body>
+</html>
